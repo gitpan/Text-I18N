@@ -1,5 +1,8 @@
 Revision history for Perl extension Text::I18N
 
+0.03  Wed Dec 24 00:00:00 2004
+        - default language should be i-default not auto detected
+
 0.02  Wed Dec 22 19:00:00 2004
         - better regexes
 

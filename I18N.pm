@@ -2,9 +2,8 @@ package Text::I18N;
 
 use strict;
 use I18N::LangTags 'is_language_tag';
-use I18N::LangTags::Detect;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 =head1 NAME
 
@@ -40,7 +39,7 @@ sub new {
     my $self = shift;
     my $args = ( ref $_[0] eq 'HASH' ) ? $_[0] : {};
     $self = bless( {}, ( ref($self) || $self ) );
-    $self->{default} = $args->{default} || (I18N::LangTags::Detect::detect)[0];
+    $self->{default} = $args->{default} || 'i-default';
     $self->{regex}   = $args->{regex}   || qr/^(\S+):$/;
     $self->{parsed}  = {};
     $self->parse( $_[0] ) if ( ref $_[0] eq 'SCALAR' );
@@ -122,7 +121,7 @@ the same terms as Perl itself.
 
 =head1 SEE ALSO
 
-L<Locale::Maketext>, L<I18N::LangTags>, L<I18N::LangTags::Detect>
+L<Locale::Maketext>, L<I18N::LangTags>
 
 =cut
 
