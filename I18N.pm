@@ -4,7 +4,7 @@ use strict;
 use I18N::LangTags 'is_language_tag';
 use I18N::LangTags::Detect;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 =head1 NAME
 
@@ -41,7 +41,7 @@ sub new {
     my $args = ( ref $_[0] eq 'HASH' ) ? $_[0] : {};
     $self = bless( {}, ( ref($self) || $self ) );
     $self->{default} = $args->{default} || (I18N::LangTags::Detect::detect)[0];
-    $self->{regex}   = $args->{regex}   || qr/^(\w*):$/;
+    $self->{regex}   = $args->{regex}   || qr/^(\S+):$/;
     $self->{parsed}  = {};
     $self->parse( $_[0] ) if ( ref $_[0] eq 'SCALAR' );
     return $self;
@@ -101,7 +101,7 @@ Parse text snippet.
 sub parse {
     my ( $self, $input ) = @_;
     my $langtag = $self->{default};
-    for my $line ( split /\n/, $$input ) {
+    for my $line ( split /[\n\r]+/, $$input ) {
         if ( $line =~ $self->{regex} ) {
             is_language_tag($1)
               ? ( $langtag = $1 )

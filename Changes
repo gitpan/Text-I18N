@@ -1,4 +1,7 @@
 Revision history for Perl extension Text::I18N
 
+0.02  Wed Dec 22 19:00:00 2004
+        - better regexes
+
 0.01  Wed Dec 22 01:00:00 2004
         - original version.
